@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import Dictionary from './../../components/Dictionary';
-import ModalDialog from './../../components/ModalDialog';
-import CreateDictionaryForm from './../../components/CreateDictionaryForm';
-import NavBar from './../../components/NavBar';
+import Dictionary from '../../components/Dictionary/Dictionary';
+import ModalDialog from '../../components/ModalDialog/ModalDialog';
+import CreateDictionaryForm from '../../components/CreateDictionaryForm/CreateDictionaryForm';
+import NavBar from '../../components/NavBar/NavBar';
 
 import { IDictionary, IRowData } from './../../store/interfaces';
 
@@ -44,8 +44,8 @@ export default class ManageDictionaries extends Component<Props, State> {
       <>
         <NavBar/>
         <h1 className='display-4 text-center mb-5'>Manage Dictionaries</h1>
-        <button type="button" className="btn btn-success btn-center" onClick={this.onOpenFormModal}>
-          <i className='material-icons icon__btn'>add</i>
+        <button type="button" className="btn btn-success btn-add" onClick={this.onOpenFormModal}>
+          <i className='material-icons'>add</i>
           Create Dictionary
         </button>
         <ModalDialog

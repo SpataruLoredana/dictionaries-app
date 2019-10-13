@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.scss';
 
 interface IButton {
   color: string;
@@ -17,13 +18,13 @@ const ConfirmAlert: React.FC<Props> = ({
   message,
   buttons
 }) => (
-    <div className='py-2'>
+    <div className='confirm-alert'>
       {title && <h5>{title}</h5>}
-      <p className='h6 mb-4'>{message}</p>
+      <p className='h6'>{message}</p>
       {buttons.map(btn =>
         <button
-          type="button"
-          className={`btn btn-${btn.color} btn-sm mx-1`}
+          type='button'
+          className={`btn btn-${btn.color} btn-sm mx-2`}
           onClick={btn.onClick}>
           {btn.label}
         </button>

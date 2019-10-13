@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+import './style.scss';
 
-import TableRow from './TableRow';
-import ModalDialog from './ModalDialog';
-import ConfirmAlert from './ConfirmAlert';
+import TableRow from '../TableRow/TableRow';
+import ModalDialog from '../ModalDialog/ModalDialog';
+import ConfirmAlert from '../ConfirmAlert';
 
 import {
   IDictionary,
   IRowData,
   IDictionaryError
-} from './../store/interfaces';
-import { VALIDATIONS } from './../constants';
+} from '../../store/interfaces';
+import { VALIDATIONS } from '../../constants';
 
 interface State {
   isAddingRow: boolean;
@@ -106,21 +107,21 @@ export default class Dictionary extends Component<Props, State> {
       { color: 'primary', label: 'Cancel', onClick: this.onCancelDelete }
     ];
     return (
-      <div className="card-header">
+      <div className='card-header'>
         {this.props.title}
         <button
           className='btn p-0'
           title='Delete Dictionary'
           onClick={this.onOpenConfirmModal}
         >
-          <i className="material-icons text-light" >delete</i>
+          <i className='material-icons' >delete</i>
         </button>
         <ModalDialog
           isDismissable={false}
           modalIsOpen={this.state.confirmModalOpen}
         >
           <ConfirmAlert
-            message='Are you sure you want to delete this?'
+            message='Are you sure you want to delete this dictionary?'
             buttons={modalButtons}
           />
         </ModalDialog>
@@ -159,15 +160,15 @@ export default class Dictionary extends Component<Props, State> {
 
   render() {
     return (
-      <div className="card mx-4 my-5">
+      <div className='card dictionary-card'>
         {this.renderCardHeader()}
-        <div className="card-body">
+        <div className='card-body'>
           <p className='text-muted text-small'>
             {this.props.description}
           </p>
           <button
-            type="button"
-            className="btn btn-primary btn-sm"
+            type='button'
+            className='btn btn-primary btn-sm'
             onClick={this.handleAddRow}>
             Add New Row
           </button>

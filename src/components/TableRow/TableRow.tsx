@@ -1,5 +1,6 @@
 import React, { Component, ComponentState } from 'react';
-import { IRowData } from './../store/interfaces';
+import { IRowData } from '../../store/interfaces';
+import './style.scss';
 
 interface Props {
   rowData: IRowData;
@@ -91,7 +92,7 @@ export default class TableRow extends Component<Props, State> {
               <i className='material-icons'>save</i>
             </button>
             <button className='btn py-0 px-1' onClick={this.handleDeleteRow}>
-              <i className='material-icons color-danger'>clear</i>
+              <i className='material-icons text-danger'>clear</i>
             </button>
           </td>
         </tr>
@@ -103,22 +104,19 @@ export default class TableRow extends Component<Props, State> {
   renderInStaticMode() {
     if (!this.state.editModeOn) {
       return (
-        <tr className={`${this.props.hasError ? 'error-alpha' : ''}`}>
+        <tr className={`${this.props.hasError ? 'bg-error' : ''}`}>
           <td>
           
           {this.props.rowData.from}
           </td>
           <td>{this.props.rowData.to}
-          {/* { this.props.hasError &&
-            <i className='material-icons text-danger error-icon'>error_outline</i>
-            } */}
           </td>
           <td>
             <button className='btn py-0 px-1' onClick={this.handleEditRow}>
               <i className='material-icons'>edit</i>
             </button>
             <button className='btn py-0 px-1' onClick={this.handleDeleteRow}>
-              <i className='material-icons color-danger'>clear</i>
+              <i className='material-icons text-danger'>clear</i>
             </button>
           </td>
         </tr>

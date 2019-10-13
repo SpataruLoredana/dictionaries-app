@@ -1,5 +1,6 @@
 import React, { Component, ComponentState } from 'react';
-import { IDictionary } from './../store/interfaces';
+import { IDictionary } from '../../store/interfaces';
+import './style.scss';
 
 interface State {
   title: string;
@@ -14,6 +15,8 @@ interface Props {
 }
 
 export default class CreateDictionaryForm extends Component<Props, State> {
+  static componentClass = 'dictionary-form';
+
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -70,39 +73,39 @@ export default class CreateDictionaryForm extends Component<Props, State> {
   render() {
     const { onCloseModal } = this.props;
     return (
-      <div className='my-2'>
+      <div className={CreateDictionaryForm.componentClass}>
         <h3 className='text-center'>Create Dictionary</h3>
         {this.renderErrorMessage()}
         <form onSubmit={this.handleFormSubmit}>
-          <div className="form-group my-4">
-            <label htmlFor="title">Title</label>
+          <div className='form-group my-4'>
+            <label htmlFor='title'>Title</label>
             <input
-              type="text"
-              className="form-control"
+              type='text'
+              className='form-control'
               name='title'
-              id="title"
-              placeholder="Enter title here..."
+              id='title'
+              placeholder='Enter title here...'
               value={this.state.title}
               onChange={this.handleInputChange}
             />
           </div>
-          <div className="form-group my-4">
-            <label htmlFor="description">Description</label>
+          <div className='form-group'>
+            <label htmlFor='description'>Description</label>
             <input
-              type="text"
-              className="form-control"
+              type='text'
+              className='form-control'
               name='description'
-              id="description"
-              placeholder="Enter description here..."
+              id='description'
+              placeholder='Enter description here...'
               value={this.state.description}
               onChange={this.handleInputChange}
             />
           </div>
           <div className='d-flex justify-content-end mt-5'>
-            <button type="submit" className="btn btn-success mx-1">
+            <button type='submit' className='btn btn-success mx-1'>
               Create Dictionary
             </button>
-            <button type="button" className="btn btn-danger mx-1" onClick={onCloseModal}>
+            <button type='button' className='btn btn-danger mx-1' onClick={onCloseModal}>
               Cancel
             </button>
           </div>

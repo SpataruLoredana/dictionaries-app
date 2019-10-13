@@ -6,7 +6,7 @@ import configureStore from './store';
 
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import './App.scss';
 
 ReactDOM.render(
   <Provider store={configureStore()}>

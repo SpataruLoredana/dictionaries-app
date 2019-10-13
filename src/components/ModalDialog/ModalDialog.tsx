@@ -1,5 +1,6 @@
 import React, { Component, ComponentState } from 'react';
 import Modal from 'react-modal';
+import './style.scss';
 
 interface Props {
   children?: React.ReactChild;
@@ -44,8 +45,8 @@ export default class ModalDialog extends Component<Props, State> {
       <Modal
         isOpen={this.state.modalIsOpen}
         onRequestClose={this.closeModal}
-        className="modal-dialog"
-        overlayClassName="modal-overlay"
+        className='modal-dialog'
+        overlayClassName='modal-overlay'
       >
         {this.props.children}
       </Modal>

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import { IDictionary } from './../../store/interfaces';
-import ReadOnlyDictionary from './../../components/ReadOnlyDictionary';
-import NavBar from './../../components/NavBar';
+import ReadOnlyDictionary from '../../components/ReadOnlyDictionary/ReadOnlyDictionary';
+import NavBar from '../../components/NavBar/NavBar';
 
 interface Props {
   dictionaries: IDictionary[];
