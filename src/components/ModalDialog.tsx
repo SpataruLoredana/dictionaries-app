@@ -3,8 +3,6 @@ import Modal from 'react-modal';
 
 interface Props {
   children?: React.ReactChild;
-  buttonLabel?: string;
-  buttonIcon?: string;
   isDismissable: boolean;
   modalIsOpen?: boolean;
 }
@@ -42,24 +40,15 @@ export default class ModalDialog extends Component<Props, State> {
   }
 
   render() {
-    const { buttonLabel, buttonIcon } = this.props;
     return (
-      <>
-        <button type="button" className="btn btn-success btn-lg btn-center" onClick={this.openModal}>
-          {buttonIcon &&
-            <i className='material-icons icon__btn'>{buttonIcon}</i>
-          }
-          {buttonLabel}
-        </button>
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          onRequestClose={this.closeModal}
-          className="modal-dialog"
-          overlayClassName="modal-overlay"
-        >
+      <Modal
+        isOpen={this.state.modalIsOpen}
+        onRequestClose={this.closeModal}
+        className="modal-dialog"
+        overlayClassName="modal-overlay"
+      >
         {this.props.children}
-        </Modal>
-      </>
+      </Modal>
     );
   }
 }
