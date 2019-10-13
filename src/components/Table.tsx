@@ -1,14 +1,21 @@
 import React from 'react';
 import TableRow from './TableRow';
+import { IRowData } from './../store/interfaces';
 
 interface Props {
-  rows: Array<string[]>;
+  rows:  IRowData[];
   addingNewRow: boolean;
+  id: number;
+  editRow: (id: number, rowIndex: number, row: IRowData) => void;
+  deleteRow: (id: number, rowIndex: number) => void;
 }
 
 const Table: React.FC<Props> = ({
   rows,
-  addingNewRow
+  addingNewRow,
+  id,
+  editRow,
+  deleteRow
 }) => {
   return (
     <table className='table'>
@@ -20,8 +27,17 @@ const Table: React.FC<Props> = ({
         </tr>
       </thead>
       <tbody>
-        {rows.map((row, index) => <TableRow key={index} rowData={row} />)}
-        { addingNewRow && <TableRow rowData={[]} editModeOn={true}/>}
+        {rows.map((row, index) => (
+          <TableRow
+            key={index}
+            rowData={row}
+            dictionaryId={id}
+            rowIndex={index}
+            editRow={editRow}
+            deleteRow={deleteRow}
+            editModeOn={addingNewRow}
+          />
+        ))}
       </tbody>
     </table>
   );

@@ -2,7 +2,13 @@ import { connect } from 'react-redux';
 import ManageDictionaries from './ManageDictionaries';
 
 import { AppState } from './../../store';
-import { createDictionary, deleteDictionary } from './../../store/dictionaries/actions';
+import {
+  createDictionary,
+  deleteDictionary,
+  addRow,
+  editRow,
+  deleteRow
+} from './../../store/dictionaries/actions';
 
 const state2Props = (state: AppState) => {
   return {
@@ -12,5 +18,11 @@ const state2Props = (state: AppState) => {
 
 export default connect(
   state2Props,
-  { createDictionary, deleteDictionary }
+  {
+    createDictionary,
+    deleteDictionary,
+    addRow,
+    editRow,
+    deleteRow
+  }
 )(ManageDictionaries);

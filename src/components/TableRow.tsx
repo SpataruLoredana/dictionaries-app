@@ -1,8 +1,13 @@
 import React, { Component, ComponentState } from 'react';
+import { IRowData } from './../store/interfaces';
 
 interface Props {
-  rowData: string[];
+  rowData: IRowData;
   editModeOn?: boolean;
+  dictionaryId: number;
+  rowIndex: number;
+  editRow: (id: number, rowIndex: number, row: IRowData) => void;
+  deleteRow: (id: number, rowIndex: number) => void;
 }
 
 interface State {
@@ -16,8 +21,8 @@ export default class TableRow extends Component<Props, State> {
     super(props);
     this.state = {
       editModeOn: this.props.editModeOn || false,
-      from: this.props.rowData[0],
-      to: this.props.rowData[1]
+      from: this.props.rowData.from,
+      to: this.props.rowData.to
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleEditRow = this.handleEditRow.bind(this);
@@ -36,20 +41,26 @@ export default class TableRow extends Component<Props, State> {
   }
 
   handleSaveRow() {
-    // add action to save row data
+    const { dictionaryId, rowIndex } = this.props;
+    const row = {
+      from: this.state.from,
+      to: this.state.to
+    };
+    this.props.editRow(dictionaryId, rowIndex, row);
     this.setState({ editModeOn: false });
   }
 
   handleDeleteRow() {
-    // add action to delete row
+    this.props.deleteRow(this.props.dictionaryId, this.props.rowIndex);
   }
 
   renderInEditMode() {
     if (this.state.editModeOn) {
       return (
         <tr>
-          <td>
+          <td className='px-0'>
             <input
+              autoFocus
               className='form-control form-control-sm'
               type='text'
               name='from'
@@ -58,7 +69,7 @@ export default class TableRow extends Component<Props, State> {
               onChange={this.handleInputChange}
             />
           </td>
-          <td>
+          <td className='px-0'>
             <input
               className='form-control form-control-sm'
               type='text'
@@ -86,8 +97,8 @@ export default class TableRow extends Component<Props, State> {
     if (!this.state.editModeOn) {
       return (
         <tr>
-          <td>{this.props.rowData[0]}</td>
-          <td>{this.props.rowData[1]}</td>
+          <td>{this.props.rowData.from}</td>
+          <td>{this.props.rowData.to}</td>
           <td>
             <button className='btn py-0 px-1' onClick={this.handleEditRow}>
               <i className='material-icons'>edit</i>

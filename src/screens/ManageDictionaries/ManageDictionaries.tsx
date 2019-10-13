@@ -1,38 +1,75 @@
 import React, { Component } from 'react';
 
 import Dictionary from './../../components/Dictionary';
-import ModalDialog from './../../components/Modal';
+import ModalDialog from './../../components/ModalDialog';
+import CreateDictionaryForm from './../../components/CreateDictionaryForm';
 
-import { IDictionary } from './../../store/interfaces';
+import { IDictionary, IRowData } from './../../store/interfaces';
 
 interface Props {
   dictionaries: IDictionary[];
+  createDictionary: (payload: IDictionary) => void;
   deleteDictionary: (id: number) => void;
+  editRow: (id: number, rowIndex: number, row: IRowData) => void;
+  deleteRow: (id: number, rowIndex: number) => void;
+  addRow: (id: number) => void;
 }
 
-export default class ManageDictionaries extends Component<Props, {}> {
+interface State {
+  modalFormOpen: boolean;
+}
+
+export default class ManageDictionaries extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
+    this.state = {
+      modalFormOpen: false
+    };
+    this.onOpenFormModal = this.onOpenFormModal.bind(this);
+    this.onCloseFormModal = this.onCloseFormModal.bind(this);
+  }
+
+  onOpenFormModal() {
+    this.setState({ modalFormOpen: true });
+  }
+
+  onCloseFormModal() {
+    this.setState({ modalFormOpen: false });
   }
 
   render() {
-    const { dictionaries, deleteDictionary } = this.props;
+    const { dictionaries, createDictionary, deleteDictionary } = this.props;
     return (
       <>
-      <h1 className='display-4 text-center my-2'>Your Dictionaries</h1>
-      <ModalDialog buttonLabel='Create Dictionary' buttonIcon='add' isDismissable={true} />
-      <div className='d-flex justify-content-center'>
-        {dictionaries.map(dictionary => (
-          <Dictionary
-            title={dictionary.title}
-            description={dictionary.description}
-            id={dictionary.id}
-            rows={Object.entries(dictionary.table)}
-            onDeleteDictionary={deleteDictionary}
+        <h1 className='display-4 text-center my-2'>Your Dictionaries</h1>
+        <button type="button" className="btn btn-success btn-lg btn-center" onClick={this.onOpenFormModal}>
+          <i className='material-icons icon__btn'>add</i>
+          Create Dictionary
+        </button>
+        <ModalDialog
+          isDismissable={false}
+          modalIsOpen={this.state.modalFormOpen}
+        >
+          <CreateDictionaryForm
+            createDictionary={createDictionary}
+            onCloseModal={this.onCloseFormModal}
           />
-        ))}
-      </div>
-    </>
+        </ModalDialog>
+        <div className='d-flex justify-content-center flex-wrap'>
+          {dictionaries.map(dictionary => (
+            <Dictionary
+              title={dictionary.title}
+              description={dictionary.description}
+              id={dictionary.id}
+              rows={dictionary.rows}
+              onDeleteDictionary={deleteDictionary}
+              addRow={this.props.addRow}
+              editRow={this.props.editRow}
+              deleteRow={this.props.deleteRow}
+            />
+          ))}
+        </div>
+      </>
     );
   }
 }
