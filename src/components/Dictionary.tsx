@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 
 import Table from './Table';
-import ModalDialog from './Modal';
-import ConfirmAlert from './ConfirmBox';
+import ModalDialog from './ModalDialog';
+import ConfirmAlert from './ConfirmAlert';
 
-import { IDictionaryProps } from './../store/interfaces';
+import { IDictionary, IRowData } from './../store/interfaces';
 
 interface State {
   isAddingRow: boolean;
   confirmModalOpen: boolean;
 }
 
-interface Props extends IDictionaryProps {
+interface Props extends IDictionary {
   onDeleteDictionary: (id: number) => void;
+  addRow: (id: number) => void;
+  editRow: (id: number, rowIndex: number, row: IRowData) => void;
+  deleteRow: (id: number, rowIndex: number) => void;
 }
 
 export default class Dictionary extends Component<Props, State> {
@@ -29,6 +32,7 @@ export default class Dictionary extends Component<Props, State> {
   }
 
   handleAddRow() {
+    this.props.addRow(this.props.id);
     this.setState({ isAddingRow: true });
   }
 
@@ -47,11 +51,19 @@ export default class Dictionary extends Component<Props, State> {
 
   render() {
     const { title, description, id, rows } = this.props;
+    const modalButtons = [
+      { color: 'danger', label: 'Yes, delete it', onClick: this.onConfirmDelete },
+      { color: 'primary', label: 'Cancel', onClick: this.onCancelDelete }
+    ];
     return (
-      <div className="card mx-4 my-5" style={{ width: '520px' }}>
+      <div className="card mx-4 my-5">
         <div className="card-header">
           {title}
-          <button className='btn p-0' title='Delete Dictionary' onClick={this.onOpenConfirmModal}>
+          <button
+            className='btn p-0'
+            title='Delete Dictionary'
+            onClick={this.onOpenConfirmModal}
+          >
             <i className="material-icons text-light" >delete</i>
           </button>
           <ModalDialog
@@ -60,19 +72,26 @@ export default class Dictionary extends Component<Props, State> {
           >
             <ConfirmAlert
               message='Are you sure you want to delete this?'
-              buttonConfirmLabel='Yes, delete it'
-              buttonCancelLabel='Cancel'
-              onConfirm={this.onConfirmDelete}
-              onCancel={this.onCancelDelete}
+              buttons={modalButtons}
             />
           </ModalDialog>
         </div>
         <div className="card-body">
           <p className='text-muted text-small'>{description}</p>
-          <button type="button" className="btn btn-primary btn-sm" onClick={this.handleAddRow}>
+          <button
+            type="button"
+            className="btn btn-primary btn-sm"
+            onClick={this.handleAddRow}
+          >
             Add New Row
           </button>
-          <Table rows={rows} addingNewRow={this.state.isAddingRow} />
+          <Table
+            rows={rows}
+            addingNewRow={this.state.isAddingRow}
+            id={id}
+            editRow={this.props.editRow}
+            deleteRow={this.props.deleteRow}
+          />
         </div>
       </div>
     );
