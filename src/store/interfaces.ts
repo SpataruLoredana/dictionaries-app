@@ -2,14 +2,7 @@ export interface IDictionary {
   title: string;
   description: string;
   id: number;
-  table: any
-}
-
-export interface IDictionaryProps {
-  title: string;
-  description: string;
-  id: number;
-  rows: Array<[string, string]>;
+  rows: IRowData[]
 }
 
 export interface IRowData {

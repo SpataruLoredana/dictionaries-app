@@ -26,7 +26,6 @@ export const DELETE_ROW = 'DELETE_ROW';
 export interface AddRowAction {
   type: typeof ADD_ROW;
   id: number;
-  row: IRowData;
 };
 
 export interface EditRowAction {

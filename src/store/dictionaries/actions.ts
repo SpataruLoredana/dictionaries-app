@@ -24,11 +24,10 @@ export const deleteDictionary = (id: number) => {
 };
 
 
-export const addRow = (id: number, row: IRowData) => {
+export const addRow = (id: number) => {
   return {
     type: ADD_ROW,
-    id,
-    row
+    id
   };
 };
 
