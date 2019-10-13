@@ -70,11 +70,11 @@ export default class CreateDictionaryForm extends Component<Props, State> {
   render() {
     const { onCloseModal } = this.props;
     return (
-      <div>
+      <div className='my-2'>
         <h3 className='text-center'>Create Dictionary</h3>
         {this.renderErrorMessage()}
         <form onSubmit={this.handleFormSubmit}>
-          <div className="form-group">
+          <div className="form-group my-4">
             <label htmlFor="title">Title</label>
             <input
               type="text"
@@ -86,7 +86,7 @@ export default class CreateDictionaryForm extends Component<Props, State> {
               onChange={this.handleInputChange}
             />
           </div>
-          <div className="form-group">
+          <div className="form-group my-4">
             <label htmlFor="description">Description</label>
             <input
               type="text"
@@ -98,7 +98,7 @@ export default class CreateDictionaryForm extends Component<Props, State> {
               onChange={this.handleInputChange}
             />
           </div>
-          <div className='d-flex justify-content-end'>
+          <div className='d-flex justify-content-end mt-5'>
             <button type="submit" className="btn btn-success mx-1">
               Create Dictionary
             </button>

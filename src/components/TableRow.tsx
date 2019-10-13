@@ -6,8 +6,10 @@ interface Props {
   editModeOn?: boolean;
   dictionaryId: number;
   rowIndex: number;
+  hasError: boolean;
   editRow: (id: number, rowIndex: number, row: IRowData) => void;
   deleteRow: (id: number, rowIndex: number) => void;
+  isDictionaryValid: (savingRow: IRowData, rowIndex: number) => boolean;
 }
 
 interface State {
@@ -46,6 +48,10 @@ export default class TableRow extends Component<Props, State> {
       from: this.state.from,
       to: this.state.to
     };
+    const isDictionaryValid = this.props.isDictionaryValid(row, rowIndex);
+    if (!isDictionaryValid) {
+      return;
+    }
     this.props.editRow(dictionaryId, rowIndex, row);
     this.setState({ editModeOn: false });
   }
@@ -55,13 +61,14 @@ export default class TableRow extends Component<Props, State> {
   }
 
   renderInEditMode() {
+    const { hasError } = this.props;
     if (this.state.editModeOn) {
       return (
         <tr>
           <td className='px-0'>
             <input
               autoFocus
-              className='form-control form-control-sm'
+              className={`form-control form-control-sm ${hasError ? 'has-error': ''}`}
               type='text'
               name='from'
               placeholder='From'
@@ -71,7 +78,7 @@ export default class TableRow extends Component<Props, State> {
           </td>
           <td className='px-0'>
             <input
-              className='form-control form-control-sm'
+               className={`form-control form-control-sm ${hasError ? 'has-error': ''}`}
               type='text'
               name='to'
               placeholder='To'
@@ -96,9 +103,16 @@ export default class TableRow extends Component<Props, State> {
   renderInStaticMode() {
     if (!this.state.editModeOn) {
       return (
-        <tr>
-          <td>{this.props.rowData.from}</td>
-          <td>{this.props.rowData.to}</td>
+        <tr className={`${this.props.hasError ? 'error-alpha' : ''}`}>
+          <td>
+          
+          {this.props.rowData.from}
+          </td>
+          <td>{this.props.rowData.to}
+          {/* { this.props.hasError &&
+            <i className='material-icons text-danger error-icon'>error_outline</i>
+            } */}
+          </td>
           <td>
             <button className='btn py-0 px-1' onClick={this.handleEditRow}>
               <i className='material-icons'>edit</i>
