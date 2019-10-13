@@ -13,3 +13,8 @@ export interface IRowData {
 export interface DictionaryState {
   [id: number]: IDictionary
 };
+
+export interface IDictionaryError {
+  message: string;
+  rowIndexes: number[];
+}
