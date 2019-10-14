@@ -1,4 +1,4 @@
-# Github Dictinaries React, Redux & Typescript App #
+# Github Dictionaries React, Redux & Typescript App #
 
 * A React App where users can see and manage their transformation dictionaries. 
 * The web app uses Redux for state management, Bootstrap for user interface and Jest and Enzyme for unit testing.
