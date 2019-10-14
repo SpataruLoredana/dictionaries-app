@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/dictionaries-app/static/css/main.71d2a103.chunk.css",
+    "main.js": "/dictionaries-app/static/js/main.5313fb65.chunk.js",
+    "main.js.map": "/dictionaries-app/static/js/main.5313fb65.chunk.js.map",
+    "runtime-main.js": "/dictionaries-app/static/js/runtime-main.aaa23247.js",
+    "runtime-main.js.map": "/dictionaries-app/static/js/runtime-main.aaa23247.js.map",
+    "static/css/2.0624914a.chunk.css": "/dictionaries-app/static/css/2.0624914a.chunk.css",
+    "static/js/2.e20250cc.chunk.js": "/dictionaries-app/static/js/2.e20250cc.chunk.js",
+    "static/js/2.e20250cc.chunk.js.map": "/dictionaries-app/static/js/2.e20250cc.chunk.js.map",
+    "index.html": "/dictionaries-app/index.html",
+    "precache-manifest.59239f2a0c869dd60642f3c5ae63fd86.js": "/dictionaries-app/precache-manifest.59239f2a0c869dd60642f3c5ae63fd86.js",
+    "service-worker.js": "/dictionaries-app/service-worker.js",
+    "static/css/2.0624914a.chunk.css.map": "/dictionaries-app/static/css/2.0624914a.chunk.css.map",
+    "static/css/main.71d2a103.chunk.css.map": "/dictionaries-app/static/css/main.71d2a103.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aaa23247.js",
+    "static/css/2.0624914a.chunk.css",
+    "static/js/2.e20250cc.chunk.js",
+    "static/css/main.71d2a103.chunk.css",
+    "static/js/main.5313fb65.chunk.js"
+  ]
+}
