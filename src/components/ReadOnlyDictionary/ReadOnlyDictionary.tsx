@@ -20,8 +20,8 @@ const ReadOnlyDictionary: React.FC<IDictionary> = ({
             </tr>
           </thead>
           <tbody>
-            {rows.map(row => (
-              <tr>
+            {rows.map((row, index) => (
+              <tr key={index}>
                 <td>{row.from}
                 </td>
                 <td>{row.to}</td>

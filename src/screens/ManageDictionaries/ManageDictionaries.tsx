@@ -60,6 +60,7 @@ export default class ManageDictionaries extends Component<Props, State> {
         <div className='d-flex justify-content-center flex-wrap'>
           {dictionaries.map(dictionary => (
             <Dictionary
+              key={dictionary.id}
               title={dictionary.title}
               description={dictionary.description}
               id={dictionary.id}

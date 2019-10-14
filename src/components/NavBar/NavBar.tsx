@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './style.scss';
 
 const NavBar: React.FC = () => (
-  <nav className='navbar navbar-expand-lg navbar-dark bg-dark mb-4'>
+  <nav className='navbar navbar-expand-lg navbar-dark bg-dark mb-4 px-5'>
     <Link className='navbar-brand mr-5' to='/'>App Logo</Link>
     <div className='collapse navbar-collapse'>
       <ul className='navbar-nav mr-auto'>

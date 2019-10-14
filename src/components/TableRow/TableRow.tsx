@@ -11,6 +11,7 @@ interface Props {
   editRow: (id: number, rowIndex: number, row: IRowData) => void;
   deleteRow: (id: number, rowIndex: number) => void;
   isDictionaryValid: (savingRow: IRowData, rowIndex: number) => boolean;
+  resetError: () => void;
 }
 
 interface State {
@@ -40,6 +41,7 @@ export default class TableRow extends Component<Props, State> {
   }
 
   handleEditRow() {
+    this.props.resetError();
     this.setState({ editModeOn: true });
   }
 
@@ -58,6 +60,7 @@ export default class TableRow extends Component<Props, State> {
   }
 
   handleDeleteRow() {
+    this.props.resetError();
     this.props.deleteRow(this.props.dictionaryId, this.props.rowIndex);
   }
 

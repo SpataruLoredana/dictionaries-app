@@ -41,9 +41,11 @@ export default class Dictionary extends Component<Props, State> {
     this.onConfirmDelete = this.onConfirmDelete.bind(this);
     this.onCancelDelete = this.onCancelDelete.bind(this);
     this.isDictionaryValid = this.isDictionaryValid.bind(this);
+    this.resetError = this.resetError.bind(this);
   }
 
   handleAddRow() {
+    this.resetError();
     this.props.addRow(this.props.id);
     this.setState({ isAddingRow: true });
   }
@@ -68,9 +70,6 @@ export default class Dictionary extends Component<Props, State> {
       return index !== rowIndex;
     });
 
-    if (!savingRow.from || !savingRow.to) {
-      errMessage = VALIDATIONS.EMPTY;
-    }
     restRows.forEach((row, index) => {
       if (row.from === savingRow.from && row.to === savingRow.to) {
         errMessage = VALIDATIONS.CLONE;
@@ -81,6 +80,9 @@ export default class Dictionary extends Component<Props, State> {
         rowErrIndex.push(index);
       }
     });
+    if (!savingRow.from || !savingRow.to) {
+      errMessage = VALIDATIONS.EMPTY;
+    }
     if (errMessage) {
       rowErrIndex.push(rowIndex);
     }
@@ -92,6 +94,15 @@ export default class Dictionary extends Component<Props, State> {
     });
 
     return !errMessage;
+  }
+
+  resetError() {
+    this.setState({
+      error: {
+        message: '',
+        rowIndexes: []
+      }
+    });
   }
 
   renderErrorMessage() {
@@ -151,6 +162,7 @@ export default class Dictionary extends Component<Props, State> {
               editModeOn={this.state.isAddingRow}
               isDictionaryValid={this.isDictionaryValid}
               hasError={this.state.error.rowIndexes.includes(index)}
+              resetError={this.resetError}
             />
           ))}
         </tbody>

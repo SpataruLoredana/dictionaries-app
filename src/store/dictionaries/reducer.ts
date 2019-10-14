@@ -7,8 +7,8 @@ import {
   DELETE_ROW,
   RowActionTypes
 } from './types';
-import { DictionaryState, IRowData } from '../interfaces';
-import appInitialState from './../app-initial.state';
+import { DictionaryState } from '../interfaces';
+import appInitialState from '../app-initial-state';
 
 const initialState: DictionaryState = appInitialState.dictionaries;
 

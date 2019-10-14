@@ -13,7 +13,7 @@ interface Props {
   buttons: IButton[];
 }
 
-const ConfirmAlert: React.FC<Props> = ({
+export const ConfirmAlert: React.FC<Props> = ({
   title,
   message,
   buttons
@@ -21,8 +21,9 @@ const ConfirmAlert: React.FC<Props> = ({
     <div className='confirm-alert'>
       {title && <h5>{title}</h5>}
       <p className='h6'>{message}</p>
-      {buttons.map(btn =>
+      {buttons.map((btn, index) =>
         <button
+          key={index}
           type='button'
           className={`btn btn-${btn.color} btn-sm mx-2`}
           onClick={btn.onClick}>
